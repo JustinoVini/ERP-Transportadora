@@ -1,0 +1,30 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    hikari:
+      idle-timeout: 10000
+      maximum-pool-size: 100
+      connection-timeout: 2000
+      auto-commit: true
+      minimum-idle: 10
+    username: postgres
+    url: jdbc:postgresql://localhost:5433/db-transportadora
+    password: '@Viking569038'
+  flyway:
+    baselineOnMigrate: true
+    schemas: transportadora_3
+  jpa:
+    show-sql: true
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+    serialization:
+      fail-on-empty-beans: false
+    default-property-inclusion: NON_NULL
+
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:segurity}

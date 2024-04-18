@@ -1,0 +1,8 @@
+--CREATE TABLE public.transportadora (
+--    id SERIAL PRIMARY KEY,
+--    razao_social VARCHAR(255) NOT NULL,
+--    nome_fantasia VARCHAR(255) NOT NULL,
+--    num_cnpj VARCHAR(14) UNIQUE NOT NULL,
+--    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+--    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+--);
