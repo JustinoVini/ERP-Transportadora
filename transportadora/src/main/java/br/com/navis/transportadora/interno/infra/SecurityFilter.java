@@ -33,7 +33,15 @@ public class SecurityFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
             // Chamando TenantInterceptor para definir o contexto do tenant
-            tenantInterceptor.preHandle(request, response, null);
+            // tenantInterceptor.preHandle(request, response, null);
+
+            String requestURI = request.getRequestURI();
+
+            if (Arrays.asList(PUBLIC_MATCHERS).contains(requestURI)) return true;
+
+            Optional.ofNullable(request.getHeader("tenant"))
+                .map(String::toUpperCase)
+                .ifPresent(TenantContext::setCurrentTenant);
 
             var token = this.recoverToken(request);
             if (token != null) {
