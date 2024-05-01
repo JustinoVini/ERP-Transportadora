@@ -1,5 +1,6 @@
 package br.com.navis.transportadora.interno.infra;
 
+import br.com.navis.transportadora.config.hibernate.TenantContext;
 import br.com.navis.transportadora.config.hibernate.TenantInterceptor;
 import br.com.navis.transportadora.interno.domain.repository.UsuarioRepository;
 import jakarta.servlet.FilterChain;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Component
 @Slf4j
@@ -36,8 +38,6 @@ public class SecurityFilter extends OncePerRequestFilter {
             // tenantInterceptor.preHandle(request, response, null);
 
             String requestURI = request.getRequestURI();
-
-            if (Arrays.asList(PUBLIC_MATCHERS).contains(requestURI)) return true;
 
             Optional.ofNullable(request.getHeader("tenant"))
                 .map(String::toUpperCase)
