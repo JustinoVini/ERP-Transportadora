@@ -3,6 +3,7 @@ package br.com.navis.transportadora.config.hibernate;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.core.Ordered;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
@@ -15,6 +16,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(tenantInterceptor);
+        registry.addInterceptor(tenantInterceptor).order(Ordered.LOWEST_PRECEDENCE);
     }
 }
